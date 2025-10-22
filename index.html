@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kejutan untuk Bu Dokter 🎉</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f172a;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; background:linear-gradient(180deg,#f3f6ff 0%,var(--bg) 100%); color:var(--accent); min-height:100vh; display:flex; align-items:center; justify-content:center; transition: all 0.8s ease;}
+    .wrap{width:min(880px,94%);}
+    .card{background:var(--card); border-radius:18px; padding:36px; box-shadow:0 10px 30px rgba(15,23,42,0.08); text-align:center;}
+    .title{font-family:Playfair Display, serif; font-size:28px; margin:0 0 6px;}
+    .subtitle{color:var(--muted); margin:0 0 18px;}
+    .peek{font-size:18px; padding:18px; border-radius:12px; background:linear-gradient(90deg,#fff,#fbfdff); margin:18px auto; max-width:640px; cursor:pointer; box-shadow:0 6px 20px rgba(2,6,23,0.04);}
+    .hidden{display:none}
+    .big-ucap{font-size:36px; margin:10px 0 6px;}
+    .fun{font-size:16px; color:var(--muted);}
+    .quote{margin-top:18px; font-style:italic; color:#0f172a; background:#f8fafc; padding:14px; border-radius:10px;}
+    .btn{display:inline-block; margin:10px 6px; padding:10px 16px; border-radius:12px; background:#111827; color:#fff; text-decoration:none; cursor:pointer; font-weight:600;}
+    footer{margin-top:18px;color:var(--muted); font-size:13px}
+    .small{font-size:13px;color:var(--muted)}
+    .funny-text{margin-top:10px; color:#111827}
+    /* halaman hadiah */
+    #giftPage{display:none; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
+    .fade-in{animation:fadeIn 1s ease forwards;}
+    @keyframes fadeIn{from{opacity:0; transform:translateY(10px);}to{opacity:1; transform:translateY(0);}}
+  </style>
+</head>
+<body>
+  <div class="wrap" id="mainPage">
+    <div class="card">
+      <p class="subtitle">Klik aja, Bu Dokter 😉</p>
+
+      <div id="peek" class="peek" role="button" tabindex="0">
+        Klik di sini ya ✨
+      </div>
+
+      <div id="stage" class="hidden">
+        <div id="confetti-container"></div>
+        <div class="big-ucap">Selamat Ulang Tahun, Bu Dokter! 🎂</div>
+        <p class="fun">Semoga hari ini dipenuhi tawa, obat manis, dan resep bahagia. 😄</p>
+
+        <div style="margin-top:18px;">
+          <button id="againBtn" class="btn">Coba Klik Lagi</button>
+          <button id="giftBtn" class="btn">Hadiah Rahasia 🎁</button>
+        </div>
+
+        <p class="quote">“Jangan biarkan pendapat orang lain mengaburkan cahaya mimpimu.” — Thomas A. Edison</p>
+        <p class="small">Dari Orang Gabut😝</p>
+      </div>
+
+      <footer>© 2025 — dibuat dengan gabut untuk Bu Dokter 😄</footer>
+    </div>
+  </div>
+
+  <!-- Halaman Hadiah -->
+  <div class="wrap hidden" id="giftPage">
+    <div class="card">
+      <h1 class="title fade-in">🎁 Hadiah Rahasia untuk Bu Dokter 🎁</h1>
+      <p class="subtitle fade-in">Sabar ya Bu... hadiahnya lagi dandan dulu 😆</p>
+      <p id="countdown" class="subtitle fade-in"></p>
+      <div id="giftLinkContainer" class="hidden fade-in">
+        <!-- Akan diisi otomatis: Nama Akun, Password, Profile, PIN (ganti dengan data asli) -->
+        <div id="accessBox" style="display:flex;flex-direction:column;gap:10px;align-items:center;">
+          <div style="padding:14px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(2,6,23,0.04);max-width:460px;width:100%;text-align:left;">
+            <p style="margin:6px 0;font-weight:600">Nama Akun: <span id="accName">selimadesheriyev@dapoerdigital.app</span></p>
+            <p style="margin:6px 0;font-weight:600">Password: <span id="accPass">mesokxtahu</span></p>
+            <p style="margin:6px 0;font-weight:600">Profile: <span id="accProfile">Bu Dokter</span></p>
+            <p style="margin:6px 0;font-weight:600">PIN: <span id="accPin">2210</span></p>
+          </div>
+        </div>
+      </div>
+      <footer>🎉 Surprise kecil dari Aku — semoga senyum terus ya, Bu 😄</footer>
+    </div>
+  </div>
+
+  <audio id="bgAudio" src="" loop preload="auto"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    const peek = document.getElementById('peek');
+    const stage = document.getElementById('stage');
+    const againBtn = document.getElementById('againBtn');
+    const giftBtn = document.getElementById('giftBtn');
+    const audio = document.getElementById('bgAudio');
+    const mainPage = document.getElementById('mainPage');
+    const giftPage = document.getElementById('giftPage');
+    const countdown = document.getElementById('countdown');
+    const giftLinkContainer = document.getElementById('giftLinkContainer');
+
+    function launchConfetti(){
+      const duration = 3000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() * 0.2 } }));
+      }, 250);
+    }
+
+    function openSurprise(){
+      peek.classList.add('hidden');
+      stage.classList.remove('hidden');
+      launchConfetti();
+      if(audio.src){ audio.play().catch(()=>{}); }
+    }
+
+    peek.addEventListener('click', openSurprise);
+    peek.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') openSurprise(); });
+
+    againBtn.addEventListener('click', ()=>{
+      const funny = document.querySelector('.funny-text');
+      if(!funny){
+        const p = document.createElement('p');
+        p.className = 'funny-text';
+        p.innerText = 'Ups — diklik lagi, Bu! Nanti stetoskopnya ikut lompat 😆';
+        document.querySelector('.card').appendChild(p);
+      } else {
+        funny.remove();
+      }
+      launchConfetti();
+      if(audio.src){ audio.play().catch(()=>{}); }
+    });
+
+    giftBtn.addEventListener('click', ()=>{
+      mainPage.style.display = 'none';
+      giftPage.style.display = 'flex';
+      startCountdown();
+    });
+
+    function startCountdown(){
+      let timeLeft = 5;
+      countdown.textContent = `Tunggu ${timeLeft} detik ya...`;
+      const timer = setInterval(()=>{
+        timeLeft--;
+        countdown.textContent = `Tunggu ${timeLeft} detik ya...`;
+        if(timeLeft <= 0){
+          clearInterval(timer);
+          showGiftText();
+        }
+      },1000);
+    }
+
+    function showGiftText(){
+      countdown.textContent = '🎉 Hadiahnya sudah siap, Bu!';
+      giftLinkContainer.classList.remove('hidden');
+      giftLinkContainer.classList.add('fade-in');
+    }
+  </script>
+</body>
+</html>
