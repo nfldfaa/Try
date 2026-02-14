@@ -1,161 +1,328 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kejutan untuk Bu Guru 🎉</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#f7f8fb;
-      --card:#ffffff;
-      --muted:#6b7280;
-      --accent:#0f172a;
-    }
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; background:linear-gradient(180deg,#f3f6ff 0%,var(--bg) 100%); color:var(--accent); min-height:100vh; display:flex; align-items:center; justify-content:center; transition: all 0.8s ease;}
-    .wrap{width:min(880px,94%);}
-    .card{background:var(--card); border-radius:18px; padding:36px; box-shadow:0 10px 30px rgba(15,23,42,0.08); text-align:center;}
-    .title{font-family:Playfair Display, serif; font-size:28px; margin:0 0 6px;}
-    .subtitle{color:var(--muted); margin:0 0 18px;}
-    .peek{font-size:18px; padding:18px; border-radius:12px; background:linear-gradient(90deg,#fff,#fbfdff); margin:18px auto; max-width:640px; cursor:pointer; box-shadow:0 6px 20px rgba(2,6,23,0.04);}
-    .hidden{display:none}
-    .big-ucap{font-size:36px; margin:10px 0 6px;}
-    .fun{font-size:16px; color:var(--muted);}
-    .quote{margin-top:18px; font-style:italic; color:#0f172a; background:#f8fafc; padding:14px; border-radius:10px;}
-    .btn{display:inline-block; margin:10px 6px; padding:10px 16px; border-radius:12px; background:#111827; color:#fff; text-decoration:none; cursor:pointer; font-weight:600;}
-    footer{margin-top:18px;color:var(--muted); font-size:13px}
-    .small{font-size:13px;color:var(--muted)}
-    .funny-text{margin-top:10px; color:#111827}
-    /* halaman hadiah */
-    #giftPage{display:none; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
-    .fade-in{animation:fadeIn 1s ease forwards;}
-    @keyframes fadeIn{from{opacity:0; transform:translateY(10px);}to{opacity:1; transform:translateY(0);}}
-  </style>
+    <meta charset="UTF-8">
+    <title>Valentine Day's</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff1f5, #fdf2f8);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            padding: 36px 32px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            margin-top: 0;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        p {
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-top: 18px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #f472b6;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #f472b6, #ec4899);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.25);
+        }
+
+        .feedback {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #f0fdf4;
+            color: #15803d;
+        }
+
+        .feedback.wrong {
+            background-color: #fff1f2;
+            color: #be123c;
+        }
+
+        .poem {
+            color: #374151;
+            font-size: 14.8px;
+            line-height: 1.9;
+            margin: 26px 0;
+        }
+
+        .qr-img {
+            margin: 24px 0;
+            width: 180px;
+            height: 180px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* FLOATING HEART */
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            color: rgba(236, 72, 153, 0.35);
+            font-size: 18px;
+            animation: floatUp 6s linear forwards;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-110vh) scale(1.4);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap" id="mainPage">
-    <div class="card">
-      <p class="subtitle">Klik aja, Bu Guru 😉</p>
 
-      <div id="peek" class="peek" role="button" tabindex="0">
-        Klik di sini ya ✨
-      </div>
+<!-- BACKGROUND MUSIC -->
+<audio id="bgm" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6e1d90bb05.mp3" type="audio/mpeg">
+</audio>
 
-      <div id="stage" class="hidden">
-        <div id="confetti-container"></div>
-        <div class="big-ucap">Selamat Ulang Tahun, Bu Guru! 🎂</div>
-        <p class="fun">Semoga hari ini dipenuhi tawa, obat manis, dan resep bahagia. 😄</p>
+<div class="container">
 
-        <div style="margin-top:18px;">
-          <button id="againBtn" class="btn">Coba Klik Lagi</button>
-          <button id="giftBtn" class="btn">Hadiah Rahasia 🎁</button>
-        </div>
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+        <h2>Step 1 – Apaan yah? 🤔</h2>
+        <p id="question"></p>
 
-        <p class="quote">“Jangan biarkan pendapat orang lain mengaburkan cahaya mimpimu.” — Thomas A. Edison</p>
-        <p class="small">Dari Orang Gabut😝</p>
-      </div>
+        <input id="answerInput" placeholder="Ketik jawaban kamu di sini...">
+        <button onclick="checkRiddle()">Kirim Jawaban</button>
 
-      <footer>© 2025 — dibuat dengan gabut untuk Bu Guru 😄</footer>
+        <div id="feedback" class="feedback"></div>
     </div>
-  </div>
 
-  <!-- Halaman Hadiah -->
-  <div class="wrap hidden" id="giftPage">
-    <div class="card">
-      <h1 class="title fade-in">🎁 Hadiah Rahasia untuk Bu Guru 🎁</h1>
-      <p class="subtitle fade-in">Sabar ya Bu... hadiahnya lagi dandan dulu 😆</p>
-      <p id="countdown" class="subtitle fade-in"></p>
-      <div id="giftLinkContainer" class="hidden fade-in">
-        <!-- Akan diisi otomatis: Nama Akun, Password, Profile, PIN (ganti dengan data asli) -->
-        <div id="accessBox" style="display:flex;flex-direction:column;gap:10px;align-items:center;">
-          <div style="padding:14px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(2,6,23,0.04);max-width:460px;width:100%;text-align:left;">
-              <p class="subtitle fade-in">Liburan ke jember makan nya tape</p>
-                <p class="subtitle fade-in">Pulangnya beli kopi bubuk sekilo</p>
-                  <p class="subtitle fade-in">Sudah mikir keras sampe cape</p>
-                    <p class="subtitle fade-in">08 selanjutnya boleh loh😝</p>
-          </div>
-        </div>
-      </div>
-      <footer>🎉 Surprise kecil dari Aku — semoga senyum terus ya, Bu 😄</footer>
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+        <h2>Step 2 – For You 🌷</h2>
+
+        <p class="poem">
+    Apa pun yang sedang kamu hadapi hari ini,<br>
+    nggak apa-apa kalau rasanya berat.<br>
+    Jalani pelan-pelan, dengan caramu sendiri.<br><br>
+
+    Dunia memang nggak selalu ramah,<br>
+    kadang capek tanpa tahu harus cerita ke siapa,<br>
+    tapi kamu sudah sejauh ini,<br>
+    dan itu berarti kamu cukup kuat.<br><br>
+
+    Kalau hari ini terasa melelahkan,<br>
+    berhenti sebentar juga nggak salah.<br>
+    Tarik napas, istirahat sejenak.<br><br>
+
+    Ingat satu hal ini,<br>
+    kamu nggak sendirian 🤍
+</p>
+
+
+        <button onclick="nextStep(3)">Lanjut</button>
     </div>
-  </div>
 
-  <audio id="bgAudio" src="" loop preload="auto"></audio>
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+        <h2>Step 3 – Kotak Ajaib ✨</h2>
+        <p>Scan pelan-pelan ya, ada sesuatu buat kamu 🎉</p>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script>
-    const peek = document.getElementById('peek');
-    const stage = document.getElementById('stage');
-    const againBtn = document.getElementById('againBtn');
-    const giftBtn = document.getElementById('giftBtn');
-    const audio = document.getElementById('bgAudio');
-    const mainPage = document.getElementById('mainPage');
-    const giftPage = document.getElementById('giftPage');
-    const countdown = document.getElementById('countdown');
-    const giftLinkContainer = document.getElementById('giftLinkContainer');
+        <img class="qr-img" src="qr.png" alt="QR Code">
 
-    function launchConfetti(){
-      const duration = 3000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) return clearInterval(interval);
-        const particleCount = 50 * (timeLeft / duration);
-        confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() * 0.2 } }));
-      }, 250);
-    }
 
-    function openSurprise(){
-      peek.classList.add('hidden');
-      stage.classList.remove('hidden');
-      launchConfetti();
-      if(audio.src){ audio.play().catch(()=>{}); }
-    }
+        <button onclick="nextStep(4)">Buka Pesan Terakhir</button>
+    </div>
 
-    peek.addEventListener('click', openSurprise);
-    peek.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') openSurprise(); });
+    <!-- STEP 4 -->
+    <div class="step" id="step4">
+        <h2>Last Step – Idk?🤔</h2>
 
-    againBtn.addEventListener('click', ()=>{
-      const funny = document.querySelector('.funny-text');
-      if(!funny){
-        const p = document.createElement('p');
-        p.className = 'funny-text';
-        p.innerText = 'Ups — diklik lagi, Bu! Nanti stetoskopnya ikut lompat 😆';
-        document.querySelector('.card').appendChild(p);
-      } else {
-        funny.remove();
-      }
-      launchConfetti();
-      if(audio.src){ audio.play().catch(()=>{}); }
-    });
+        <p class="poem">
+    Apa pun yang sedang kamu hadapi sekarang,<br>
+    aku harap kamu tahu satu hal ini.<br><br>
 
-    giftBtn.addEventListener('click', ()=>{
-      mainPage.style.display = 'none';
-      giftPage.style.display = 'flex';
-      startCountdown();
-    });
+    Nggak semua hari harus kuat,<br>
+    nggak semua masalah harus cepat selesai.<br>
+    Kadang cukup bertahan saja,<br>
+    itu sudah lebih dari cukup.<br><br>
 
-    function startCountdown(){
-      let timeLeft = 5;
-      countdown.textContent = `Tunggu ${timeLeft} detik ya...`;
-      const timer = setInterval(()=>{
-        timeLeft--;
-        countdown.textContent = `Tunggu ${timeLeft} detik ya...`;
-        if(timeLeft <= 0){
-          clearInterval(timer);
-          showGiftText();
+    Kalau dunia terasa berat,<br>
+    kalau langkahmu melambat,<br>
+    nggak apa-apa.<br><br>
+
+    Aku selalu ada di sini,<br>
+    menemani, mendengarkan,<br>
+    dan percaya kalau kamu bisa melewati semuanya 🤍
+</p>
+
+
+        <button onclick="nextStep(1)">Balik ke Awal</button>
+    </div>
+
+</div>
+
+<script>
+    // RIDDLE
+    const riddles = [
+        {
+            question: "Binatang apa yang paling malas?",
+            answer: "sapi"
+        },
+        {
+            question: "Ban, ban apa yang enak dimakan?",
+            answer: "bandeng"
+        },
+        {
+            question: "Alat apa yang bisa move on?",
+            answer: "stop kontak"
         }
-      },1000);
+    ];
+
+    let currentRiddle = 0;
+    const questionEl = document.getElementById("question");
+    const inputEl = document.getElementById("answerInput");
+    const feedbackEl = document.getElementById("feedback");
+
+    questionEl.innerText = riddles[currentRiddle].question;
+
+    function checkRiddle() {
+        const userAnswer = inputEl.value.toLowerCase().trim();
+        const correctAnswer = riddles[currentRiddle].answer;
+
+        feedbackEl.style.display = "block";
+
+        if (userAnswer.includes(correctAnswer)) {
+            feedbackEl.className = "feedback correct";
+            feedbackEl.innerText = "Jawaban benar 🤍";
+        } else {
+        feedbackEl.className = "feedback wrong";
+         feedbackEl.innerHTML = `
+        Jawaban belum tepat.<br><br>
+        <strong>Jawaban yang benar:</strong> ${correctAnswer}
+    `;
+}
+
+        setTimeout(() => {
+            currentRiddle++;
+            inputEl.value = "";
+            feedbackEl.style.display = "none";
+
+            if (currentRiddle < riddles.length) {
+                questionEl.innerText = riddles[currentRiddle].question;
+            } else {
+                nextStep(2);
+            }
+        }, 2500);
     }
 
-    function showGiftText(){
-      countdown.textContent = '🎉 Hadiahnya sudah siap, Bu!';
-      giftLinkContainer.classList.remove('hidden');
-      giftLinkContainer.classList.add('fade-in');
+    function nextStep(step) {
+        document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+        document.getElementById("step" + step).classList.add("active");
     }
-  </script>
+
+    // FLOATING HEART
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = 14 + Math.random() * 14 + "px";
+        heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 7000);
+    }
+    setInterval(createHeart, 700);
+
+    // MUSIC AUTOPLAY
+    const bgm = document.getElementById("bgm");
+    document.addEventListener("click", () => {
+        bgm.play().catch(() => {});
+    }, { once: true });
+</script>
+
 </body>
 </html>
